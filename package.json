@@ -1,0 +1,67 @@
+{
+  "name": "typescript-cdk-example",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Patryk Milewski",
+  "scripts": {
+    "ci": "yarn install --frozen-lockfile",
+    "ci:check-all": "npm-run-all --print-label --parallel audit test build eslint",
+    "test": "lerna run test --stream --parallel --",
+    "audit": "npx yarn-audit-ci --moderate",
+    "audit:fix": "npx yarn-audit-fix",
+    "eslint": "eslint --ext .js,.ts,.json .",
+    "check-types": "lerna run check-types --stream --parallel --",
+    "lint": "yarn run build && yarn run eslint",
+    "prepare": "husky install",
+    "synth:prod": "npx cdk synth -c config=prod",
+    "synth:dev": "npx cdk synth -c config=dev",
+    "deploy:prod": "npx cdk deploy -c config=prod",
+    "deploy:dev": "npx cdk deploy -c config=dev",
+    "deploy:patryk": "npx cdk deploy -c config=patryk --app 'npx ts-node bin/dev-app.ts' --all"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json}": "yarn run lint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "@dazn/lambda-powertools-logger": "^1.28.1",
+    "aws-cdk-lib": "^2.27.0",
+    "aws-lambda": "^1.0.7",
+    "constructs": "^10.1.25",
+    "dotenv": "^16.0.0",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@sucrase/jest-plugin": "^2.2.0",
+    "@types/aws-lambda": "^8.10.92",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.11.38",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "aws-cdk": "2.27.0",
+    "esbuild": "^0.14.21",
+    "eslint": "^8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-formatter-pretty": "^4.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-json-format": "^2.0.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.4.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.7.2"
+  },
+  "engines": {
+    "node": ">=16",
+    "yarn": "^1.22.0"
+  }
+}

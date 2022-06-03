@@ -1,0 +1,8 @@
+aws-exports.js
+node_modules
+coverage
+build
+dist
+.vscode
+jest.config.js
+**/*.map
